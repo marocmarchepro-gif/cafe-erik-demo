@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Erik – Kafé & Lunch vid Davidshall, Malmö</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FAF5EE",
+            creamAlt: "#F2E9DC",
+            espresso: "#2B1E17",
+            roast: "#4A3528",
+            terracotta: "#B85D3B",
+            terracottaDark: "#97482B",
+            warmSand: "#E5D8C5",
+            muted: "#6F5D52",
+          },
+          fontFamily: {
+            serif: ["Fraunces", "Georgia", "serif"],
+            sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #FAF5EE;
+      color: #2B1E17;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+    h1, h2, h3, .font-display {
+      font-family: "Fraunces", Georgia, serif;
+    }
+    /* Subtle texture & smooth card hover */
+    .menu-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -12px rgba(43, 30, 23, 0.16);
+      border-color: rgba(184, 93, 59, 0.35);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-terracotta/20 selection:text-espresso">
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-warmSand">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group focus:outline-none">
+        <span class="w-9 h-9 rounded-full bg-espresso text-cream flex items-center justify-center font-serif text-lg font-semibold group-hover:bg-terracotta transition-colors">
+          E
+        </span>
+        <div>
+          <span class="font-display text-lg sm:text-xl font-semibold tracking-tight text-espresso block leading-none">
+            Café Erik
+          </span>
+          <span class="text-[11px] uppercase tracking-widest text-muted font-medium">
+            Davidshall · Malmö
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Huvudmeny" class="hidden md:flex items-center gap-8 text-sm font-medium text-roast">
+        <a href="#meny" class="hover:text-terracotta transition-colors py-2">Meny &amp; Dagens</a>
+        <a href="#om" class="hover:text-terracotta transition-colors py-2">Om Café Erik</a>
+        <a href="#kontakt" class="hover:text-terracotta transition-colors py-2">Hitta hit &amp; Kontakt</a>
+        <a
+          href="https://www.instagram.com/cafe.erik.malmo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-creamAlt hover:bg-warmSand text-espresso transition-colors"
+        >
+          <span>Instagram</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Öppna meny"
+        class="md:hidden p-3 rounded-xl text-espresso hover:bg-creamAlt transition-colors"
+      >
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-warmSand px-4 pb-5 pt-2 space-y-1">
+      <a href="#meny" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-roast hover:bg-creamAlt">
+        Meny &amp; Dagens
+      </a>
+      <a href="#om" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-roast hover:bg-creamAlt">
+        Om Café Erik
+      </a>
+      <a href="#kontakt" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-roast hover:bg-creamAlt">
+        Hitta hit &amp; Kontakt
+      </a>
+      <a
+        href="https://www.instagram.com/cafe.erik.malmo/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-terracotta hover:bg-creamAlt"
+      >
+        <span>@cafe.erik.malmo på Instagram</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-8 pb-14 sm:pt-14 sm:pb-20 lg:pt-16 lg:pb-24">
+      <!-- Subtle warm glow -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-24 right-0 w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-terracotta/10 blur-3xl"
+      ></div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <!-- Left Column: Welcome & CTAs -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-creamAlt border border-warmSand text-xs sm:text-sm font-medium text-roast">
+              <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+              <span>Erik Dahlbergsgatan 9 · Nära Davidshall</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold text-espresso leading-[1.12] tracking-tight">
+              Varmt kvarterskafé &amp; lunch mitt i <span class="text-terracotta italic font-normal">Davidshall</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+              På Café Erik sänker du tempot med nybryggt kaffe, hembakat fika och vällagade rätter i en personlig och avslappnad miljö i hjärtat av Malmö.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3.5 pt-1">
+              <a
+                href="#meny"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-terracotta hover:bg-terracottaDark text-white font-semibold text-sm sm:text-base shadow-sm transition-colors"
+              >
+                <span>Se meny</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <a
+                href="#kontakt"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-creamAlt hover:bg-warmSand text-espresso border border-warmSand font-semibold text-sm sm:text-base transition-colors"
+              >
+                <svg class="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Hitta hit</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Opening Hours & Address Card -->
+          <div class="lg:col-span-5">
+            <div class="bg-creamAlt/90 border border-warmSand rounded-3xl p-6 sm:p-7 shadow-sm space-y-6">
+              <div class="flex items-start justify-between gap-4 border-b border-warmSand pb-4">
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-terracotta font-semibold">Öppettider</p>
+                  <h2 class="text-2xl font-semibold text-espresso mt-0.5">Välkommen in</h2>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-cream text-xs font-medium text-roast border border-warmSand">
+                  Malmö
+                </span>
+              </div>
+
+              <dl class="space-y-3 text-sm sm:text-base">
+                <div class="flex items-center justify-between gap-4 py-1 border-b border-warmSand/60">
+                  <dt class="text-roast font-medium">Mån–Fre</dt>
+                  <dd class="font-semibold text-espresso tabular-nums">11:00–18:00</dd>
+                </div>
+                <div class="flex items-center justify-between gap-4 py-1 border-b border-warmSand/60">
+                  <dt class="text-roast font-medium">Lör</dt>
+                  <dd class="font-semibold text-espresso tabular-nums">12:00–18:00</dd>
+                </div>
+                <div class="flex items-center justify-between gap-4 py-1">
+                  <dt class="text-roast font-medium">Sön</dt>
+                  <dd class="font-medium text-muted">Stängt</dd>
+                </div>
+              </dl>
+
+              <div class="bg-cream rounded-2xl p-4 border border-warmSand/80 space-y-1.5">
+                <p class="text-xs uppercase tracking-wider text-muted font-semibold">Adress</p>
+                <p class="font-semibold text-espresso text-sm sm:text-base">
+                  Erik Dahlbergsgatan 9, 211 48 Malmö
+                </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Erik+Erik+Dahlbergsgatan+9+Malm%C3%B6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-terracotta hover:text-terracottaDark pt-0.5"
+                >
+                  <span>Öppna i Google Maps</span>
+                  <span>→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="meny" class="py-14 sm:py-20 bg-creamAlt/60 border-y border-warmSand">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header + Demo Example Notice -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+          <div class="space-y-2.5 max-w-2xl">
+            <p class="text-xs uppercase tracking-widest text-terracotta font-semibold">Meny &amp; Dagens</p>
+            <h2 class="text-3xl sm:text-4xl font-semibold text-espresso tracking-tight">
+              Kaffe, fika och lunch i lugn takt
+            </h2>
+            <p class="text-sm sm:text-base text-muted">
+              Exempelmeny i detta demoförslag – enkel att byta ut och anpassa efter dagens utbud, säsong och priser.
+            </p>
+          </div>
+
+          <!-- Clear Demo Customization Badge -->
+          <div class="inline-flex items-start gap-2.5 bg-cream border border-terracotta/30 rounded-2xl px-4 py-3 text-xs sm:text-sm text-roast max-w-md">
+            <span class="mt-0.5 w-2 h-2 rounded-full bg-terracotta shrink-0"></span>
+            <span>
+              <strong class="font-semibold text-espresso">Exempelrätter i demon:</strong> Alla rätter och priser nedan är förslag och kan enkelt redigeras.
+            </span>
+          </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div
+          role="tablist"
+          aria-label="Menykategorier"
+          class="flex flex-wrap gap-2.5 mb-8"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-category="all"
+            class="menu-tab active-tab px-4 py-2.5 rounded-full text-sm font-semibold transition-colors bg-espresso text-cream"
+          >
+            Alla rätter
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-category="kaffe"
+            class="menu-tab px-4 py-2.5 rounded-full text-sm font-semibold transition-colors bg-cream text-roast border border-warmSand hover:bg-warmSand/70"
+          >
+            Kaffe &amp; Dryck
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-category="fika"
+            class="menu-tab px-4 py-2.5 rounded-full text-sm font-semibold transition-colors bg-cream text-roast border border-warmSand hover:bg-warmSand/70"
+          >
+            Fika &amp; Bakverk
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-category="lunch"
+            class="menu-tab px-4 py-2.5 rounded-full text-sm font-semibold transition-colors bg-cream text-roast border border-warmSand hover:bg-warmSand/70"
+          >
+            Lunch &amp; Mackor
+          </button>
+        </div>
+
+        <!-- Menu Groups Container -->
+        <div id="menu-container" class="space-y-10">
+          <!-- Kaffe & Dryck -->
+          <div data-group="kaffe" class="menu-group space-y-4">
+            <div class="flex items-center justify-between border-b border-warmSand pb-2">
+              <h3 class="text-xl sm:text-2xl font-semibold text-espresso">Kaffe &amp; Dryck</h3>
+              <span class="text-xs font-medium text-muted">Exempelutbud</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Bryggkaffe &amp; Cappuccino</h4>
+                  <span class="font-semibold text-terracotta shrink-0">36 kr / 46 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Nymalda bönor med balanserad sötma och rund kropp. Serveras med vanlig eller växtbaserad mjölk.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Kardemummalatte &amp; Hantverkste</h4>
+                  <span class="font-semibold text-terracotta shrink-0">49 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Värmande espresso med nystött kardemumma eller doftande lösviktste bryggt på plats.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+            </div>
+          </div>
+
+          <!-- Fika & Bakverk -->
+          <div data-group="fika" class="menu-group space-y-4">
+            <div class="flex items-center justify-between border-b border-warmSand pb-2">
+              <h3 class="text-xl sm:text-2xl font-semibold text-espresso">Fika &amp; Bakverk</h3>
+              <span class="text-xs font-medium text-muted">Exempelutbud</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Kanel- eller Kardemummabulle</h4>
+                  <span class="font-semibold text-terracotta shrink-0">42 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Saftig vetedeg med smör, råsocker och nykrossade kryddor – perfekt till eftermiddagskaffet.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Dagens Kaka &amp; Småkakor</h4>
+                  <span class="font-semibold text-terracotta shrink-0">48 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Varierar efter säsong – till exempel mörk chokladkaka, citronrutor eller mandelkaka.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+            </div>
+          </div>
+
+          <!-- Lunch & Mackor -->
+          <div data-group="lunch" class="menu-group space-y-4">
+            <div class="flex items-center justify-between border-b border-warmSand pb-2">
+              <h3 class="text-xl sm:text-2xl font-semibold text-espresso">Lunch &amp; Mackor</h3>
+              <span class="text-xs font-medium text-muted">Exempelutbud</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Rejäla Surdegsmackor</h4>
+                  <span class="font-semibold text-terracotta shrink-0">89 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Nygjorda på gott bröd med smakrika pålägg som lagrad ost, örtkräm eller marinerade grönsaker.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+
+              <article class="menu-card bg-cream rounded-2xl p-5 border border-warmSand flex flex-col justify-between gap-3">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="font-display text-lg font-semibold text-espresso">Dagens Soppa &amp; Bröd</h4>
+                  <span class="font-semibold text-terracotta shrink-0">115 kr</span>
+                </div>
+                <p class="text-sm text-muted leading-relaxed">
+                  Värmande lunchsoppa lagad från grunden, serverad med nybakat bröd och smör.
+                </p>
+                <span class="text-[11px] uppercase tracking-wider font-medium text-muted/80">Exempelpost · Demo</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Om Café Erik Section -->
+    <section id="om" class="py-14 sm:py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <p class="text-xs uppercase tracking-widest text-terracotta font-semibold">Om Café Erik</p>
+            <h2 class="text-3xl sm:text-4xl font-semibold text-espresso tracking-tight">
+              Ett personligt kvartersställe vid Davidshall
+            </h2>
+            <p class="text-base text-roast/90 leading-relaxed">
+              Strax intill Davidshalls torg och Erik Dahlbergsgatan är Café Erik en naturlig samlingsplats för både stammisar från kvarteret, kontorsgrannar på lunch och besökare som strosar genom Malmö.
+            </p>
+            <p class="text-base text-muted leading-relaxed">
+              Här står det personliga bemötandet, goda råvaror och en lugn atmosfär i centrum – oavsett om du tittar in för en snabb kopp kaffe på språng, en längre fikapaus eller en avslappnad lunch.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div class="bg-creamAlt rounded-2xl p-5 border border-warmSand">
+              <p class="font-display text-lg font-semibold text-espresso">Nära Davidshall</p>
+              <p class="text-sm text-muted mt-1">
+                Lätt att nå till fots eller på cykel mitt i centrala Malmö.
+              </p>
+            </div>
+            <div class="bg-creamAlt rounded-2xl p-5 border border-warmSand">
+              <p class="font-display text-lg font-semibold text-espresso">Kvarterskänsla &amp; lugn</p>
+              <p class="text-sm text-muted mt-1">
+                En välkomnande miljö för kaffe, fika och vardagspauser.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hitta hit & Kontakt Section -->
+    <section id="kontakt" class="py-14 sm:py-20 bg-espresso text-cream">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-10 space-y-2">
+          <p class="text-xs uppercase tracking-widest text-terracotta font-semibold">Hitta hit &amp; Kontakt</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold text-cream tracking-tight">
+            Besök oss på Erik Dahlbergsgatan
+          </h2>
+          <p class="text-cream/75 text-sm sm:text-base">
+            Välkommen förbi för en kaffe eller fika – eller hör av dig via telefon eller Instagram.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Address & Map -->
+          <div class="bg-roast/60 border border-cream/15 rounded-2xl p-6 flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+              <p class="text-xs uppercase tracking-wider text-cream/65 font-semibold">Adress</p>
+              <p class="font-display text-xl font-semibold text-cream">Erik Dahlbergsgatan 9</p>
+              <p class="text-sm text-cream/80">211 48 Malmö (vid Davidshall)</p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Erik+Erik+Dahlbergsgatan+9+Malm%C3%B6"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-terracotta hover:bg-terracottaDark text-white text-sm font-semibold transition-colors"
+            >
+              <span>Sök i Google Maps</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <!-- Phone -->
+          <div class="bg-roast/60 border border-cream/15 rounded-2xl p-6 flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+              <p class="text-xs uppercase tracking-wider text-cream/65 font-semibold">Telefon</p>
+              <p class="font-display text-xl font-semibold text-cream tabular-nums">040-23 23 54</p>
+              <p class="text-sm text-cream/80">Ring oss under kaféets öppettider.</p>
+            </div>
+            <a
+              href="tel:040232354"
+              class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-cream/10 hover:bg-cream/20 text-cream text-sm font-semibold border border-cream/15 transition-colors"
+            >
+              <span>Ring 040-23 23 54</span>
+              <span>☎</span>
+            </a>
+          </div>
+
+          <!-- Instagram -->
+          <div class="bg-roast/60 border border-cream/15 rounded-2xl p-6 flex flex-col justify-between gap-4">
+            <div class="space-y-2">
+              <p class="text-xs uppercase tracking-wider text-cream/65 font-semibold">Sociala medier</p>
+              <p class="font-display text-xl font-semibold text-cream">@cafe.erik.malmo</p>
+              <p class="text-sm text-cream/80">Följ uppdateringar och glimtar från kaféet.</p>
+            </div>
+            <a
+              href="https://www.instagram.com/cafe.erik.malmo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-between w-full px-4 py-3 rounded-xl bg-cream/10 hover:bg-cream/20 text-cream text-sm font-semibold border border-cream/15 transition-colors"
+            >
+              <span>Besök Instagram</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-espresso border-t border-cream/10 py-8 text-cream/75 text-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-center sm:text-left">
+        <span class="font-display font-semibold text-cream">Café Erik</span>
+        <span class="mx-2 text-cream/30">·</span>
+        <span>Erik Dahlbergsgatan 9, Malmö</span>
+      </div>
+
+      <!-- Subtle Demo Badge -->
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-cream/10 text-cream/80 border border-cream/15">
+        <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+        <span>Demo-förslag</span>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Interactive Menu Filtering & Mobile Nav Script -->
+  <script>
+    (function () {
+      try {
+        // Mobile navigation toggle
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const hamburgerIcon = document.getElementById("hamburger-icon");
+        const closeIcon = document.getElementById("close-icon");
+        const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+        function setMobileMenu(open) {
+          if (!mobileMenu || !menuBtn) return;
+          mobileMenu.classList.toggle("hidden", !open);
+          menuBtn.setAttribute("aria-expanded", String(open));
+          if (hamburgerIcon && closeIcon) {
+            hamburgerIcon.classList.toggle("hidden", open);
+            closeIcon.classList.toggle("hidden", !open);
+          }
+        }
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", function () {
+            const isOpen = mobileMenu && !mobileMenu.classList.contains("hidden");
+            setMobileMenu(!isOpen);
+          });
+        }
+
+        mobileLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            setMobileMenu(false);
+          });
+        });
+
+        // Menu category filter tabs
+        const tabs = document.querySelectorAll(".menu-tab");
+        const groups = document.querySelectorAll(".menu-group");
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            const selectedCategory = tab.getAttribute("data-category");
+
+            tabs.forEach(function (t) {
+              const isSelected = t === tab;
+              t.setAttribute("aria-selected", String(isSelected));
+              if (isSelected) {
+                t.classList.remove("bg-cream", "text-roast", "border", "border-warmSand", "hover:bg-warmSand/70");
+                t.classList.add("bg-espresso", "text-cream");
+              } else {
+                t.classList.remove("bg-espresso", "text-cream");
+                t.classList.add("bg-cream", "text-roast", "border", "border-warmSand", "hover:bg-warmSand/70");
+              }
+            });
+
+            groups.forEach(function (group) {
+              const groupCategory = group.getAttribute("data-group");
+              const shouldShow = selectedCategory === "all" || groupCategory === selectedCategory;
+              group.classList.toggle("hidden", !shouldShow);
+            });
+          });
+        });
+      } catch (err) {
+        console.error("Fel vid initiering av sidans interaktivitet:", err);
+      }
+    })();
+  </script>
+</body>
+</html>
